@@ -1,0 +1,16 @@
+.containerCard{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3rem;
+    width: 90%; 
+    padding: 3%;
+    
+    
+}
+
+.paginado{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}

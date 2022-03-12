@@ -1,0 +1,44 @@
+.paginado{
+    font-size: 13px;
+    justify-content: center;
+    align-items: center;
+    background-position: center center;
+    flex-direction: column;
+    align-self: center;
+}
+
+.li{
+    display: inline;
+}
+
+.button{
+    background-color: transparent;
+    border: 2px solid rgb( 255, 107, 107);
+    color: rgb( 255, 107, 107);
+    font-weight: 500;
+    border-radius: 3px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: background 0.3s ease;
+    margin: 0 2px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    opacity: none;
+}
+
+.button:disabled{
+    pointer-events: none;
+}
+
+.button:hover{
+    color: white;
+    background-color: rgb( 255, 107, 107);
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.button:active{
+    box-shadow: none;
+    transform: translateY(0);
+}

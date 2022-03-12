@@ -1,0 +1,72 @@
+.landing{
+    margin: 0;
+    
+}
+.header{
+    background-color: rgb(140, 233, 154) ;
+}
+
+.container{
+    background-image:url('./img/your\ recipes\ app.png') ;
+    height: 91.8vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.body{
+    text-align: left;
+    line-height: 70px;
+    margin-right: 300px;
+    animation: moverDerecha 2s ease-in;
+}
+.title{
+    font-weight: 600;
+    font-size: 50px;
+    margin: 20px;
+    margin-bottom: 15px;
+}
+
+.button {
+    color: whitesmoke ;
+    background-color: rgb( 255, 107, 107);
+    border-radius: 15px;
+    padding: 7px 0;
+    margin: 90px;
+    font-size: 20px;
+    text-decoration: none;
+    width: 180px;
+    text-align: center;
+}
+
+.button:hover{
+    background-color: white ;
+    border: 2px solid rgb( 255, 107, 107);
+    color: #ff6b6b;
+    font-weight: 400;
+    transition: all .3s;
+}
+
+@keyframes moverDerecha{
+    0%{
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+.footer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgb( 255, 107, 107);
+    
+    
+}
+
