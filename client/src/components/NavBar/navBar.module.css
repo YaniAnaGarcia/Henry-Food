@@ -1,9 +1,9 @@
 .container{
-    background-image: url('../LandingPage/img/528_image.jpg');
+    background-image: url('./img/528_image.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     align-items: center;
     padding: 2px 3px 10px 10px;
 }

@@ -4,7 +4,7 @@ import { getAllDiets, filterByDiet} from "../../actions";
 import style from './navBar.module.css'
 
 
-export default function NavBar({handleOrderByTitle, handleOrderByScore}){
+export default function NavBar({handleOrderByTitle, handleOrderByScore, handleRefresh}){
     const dispatch = useDispatch();
 
     const typeOfDiets = useSelector((state)=>state.diets);
@@ -23,11 +23,16 @@ export default function NavBar({handleOrderByTitle, handleOrderByScore}){
     return(
         /* aca voy a hacer los filtrados */
         <div className={style.container} >
+            <div>
+                <button className={style.select} onClick={(e)=>handleRefresh(e)}>
+                    Back to All Recipes
+                </button>
+            </div>
             <div> {/* filtrado por tipos de dietas */}
                 <p className={style.title}>Select type of Diet</p>
                 <div className={style.diets}>
                     <select className={style.select} onChange={(e)=> handleFilterByDiet(e)} >  
-                        <option value='All'>All Diets...</option>
+                        <option value="all">All Diets...</option>
                         {
                             typeOfDiets && typeOfDiets.map((diet)=>(
                                 <option key={diet.id} value={diet.name}>{diet.name}</option>
@@ -35,13 +40,13 @@ export default function NavBar({handleOrderByTitle, handleOrderByScore}){
                         }
                     </select>
                 </div>
-                
             </div>
+            {/*  ORDENAMIENTOS*/}
             <div className={style.order}>
                 <p className={style.title}>Order By ...</p>
                     <div className={style.order_title}>{/* orden alfabetico */}
                         <select className={style.select}  name="orderTitle" onChange={(e)=> handleOrderByTitle(e)} >
-                            <option default>Title</option>
+                            <option value="All">Title</option>
                             <option value="A-Z">A-Z</option>
                             <option value="Z-A">Z-A</option>
                         </select>
@@ -54,6 +59,10 @@ export default function NavBar({handleOrderByTitle, handleOrderByScore}){
                         </select>
                     </div>
             </div>
+           <div>
+               Favourites
+           </div>
+           
         </div>
     )
 }

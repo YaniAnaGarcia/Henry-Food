@@ -5,22 +5,22 @@ import { Link } from "react-router-dom";
 import { searchByTitle } from "../../actions";
 import logo from './Img/Henry.png'
 
-export default function SearchBar({handleRefresh}){
+export default function SearchBar(){
     const dispatch = useDispatch();
 
     const [title, setTitle] = useState(''); //creo un estado local
    // console.log(title)
     
-    //una funcion q caputre lo q me ingresan x input
     function handleInput(e){
         e.preventDefault();
-        setTitle(e.target.value);//guardo en mi estado local seteando el titulo con el titulo q ingresan en input
+        setTitle(e.target.value);//guardo en mi estado local el valor input
         
     }
     
     function handleSubmit(e){
         e.preventDefault();
-        dispatch(searchByTitle(title));
+        dispatch(searchByTitle(title));//disp. accion con el inp
+        setTitle('')
         
     }
   
@@ -32,7 +32,7 @@ export default function SearchBar({handleRefresh}){
                         <img className={style.image} src={logo} alt="logo" />
                     </Link>
                     
-                    <Link to={'/recipes'} className={style.links} onClick={(e)=>handleRefresh(e)} >Recipes</Link>
+                    <Link to={'/recipes'} className={style.links} >Recipes</Link>
 
                     <Link to={'/create'} className={style.links}>Create your Recipe.</Link>
                 
@@ -48,7 +48,9 @@ export default function SearchBar({handleRefresh}){
                                 onChange={(e)=> handleInput(e)}
                                 />
                             
-                            <button className={style.button} type="submit" >Search</button> 
+                                <button className={style.button} type="submit" >Search</button> 
+                           
+                            
                             
                         </div>
                     </form>

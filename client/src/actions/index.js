@@ -7,11 +7,12 @@ export const FILTER_BY_DIET= "FILTER_BY_DIET";
 export const ORDER_BY_TITLE= "ORDER_BY_TITLE";
 export const ORDER_BY_SCORE= "ORDER_BY_SCORE";
 export const GET_RECIPE_DETAIL = "GET_RECIPE_DETAIL";
-export const POST_RECIPES = "POST_RECIPES"
-
+export const POST_RECIPES = "POST_RECIPES";
+export const FILTER_HELTHY = "FILTER_HELTHY";
+export const DELETE_DETAIL = "DELETE_DETAIL";
+export const DELETE_RECIPE_CREATED = "DELETE_RECIPE_CREATED";
 //defino los actions creators
 
-//traerme todas las recetas de la ruta principal /recipes
 
 export function getAllRecipes (){
     return async function (dispatch){
@@ -22,18 +23,25 @@ export function getAllRecipes (){
         })
     }
 }
-//busqueda por nombre (searchbr)
+
+
+
 export function searchByTitle (title){
     return async function (dispatch){
-        const searchTitle = await axios.get(`http://localhost:3001/recipes?name=${title}`)
-        return dispatch({
-            type:SEARCH_BY_TITLE,
-            payload:searchTitle.data
-        })
+        try {
+            const searchTitle = await axios.get(`http://localhost:3001/recipes?title=${title}`)
+            return dispatch({
+                type:SEARCH_BY_TITLE,
+                payload:searchTitle.data
+            })
+        } catch (error) {
+           alert("no se encontro lo que buscabas")
+        }
     }
 }
-//me traigo la ruta de los tipos de dietas del back
-export function getAllDiets (){
+
+
+ export function getAllDiets (){
     return async function (dispatch){
         const diets = await axios.get('http://localhost:3001/types')
         return dispatch({
@@ -41,22 +49,24 @@ export function getAllDiets (){
             payload: diets.data
         })
     }
-}
-//filtrar por dieta
+} 
+
+
+
 export function filterByDiet(payload){
     return{
         type: FILTER_BY_DIET,
         payload,
     }
 }
-// ordenar alfabeticamente
+
 export function orderByTitle(payload){
     return{
         type: ORDER_BY_TITLE,
         payload
     }
 }
-//ordenar por puntaje
+
 export function orderByScore (payload){
     return{
         type: ORDER_BY_SCORE,
@@ -73,10 +83,37 @@ export function getDetail(id){
     }
 }
 
-//creacion de receta
+
 export function createRecipe(payload){
     return async function (){
         const newRecipe = await axios.post('http://localhost:3001/recipe', payload);
         return newRecipe
     }
 }
+//limpie el estado de detail
+export function deletDetail(){
+    return{
+        type: DELETE_DETAIL,
+    }
+}
+/* export function filterHelthy(payload){
+return {
+    type: FILTER_HELTHY,
+    payload
+}
+} */
+
+export function deleteRecipe(id){
+    return async function (dispatch){
+        const detail = await axios.delete(`http://localhost:3001/recipes/${id}`)
+        return dispatch({
+            type: DELETE_RECIPE_CREATED,
+            payload: detail.data
+        })
+    }
+}
+
+/************** */
+
+
+

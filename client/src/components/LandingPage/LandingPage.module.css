@@ -60,13 +60,5 @@
         transform: translate(0);
     }
 }
-.footer {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: rgb( 255, 107, 107);
-    
-    
-}
+
 

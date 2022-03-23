@@ -1,44 +1,48 @@
-.paginado{
-    font-size: 13px;
-    justify-content: center;
-    align-items: center;
-    background-position: center center;
-    flex-direction: column;
-    align-self: center;
+
+.pageNumbers{
+    list-style: none;
+    display: flex;
+    margin-bottom: 20px;
 }
 
-.li{
-    display: inline;
+.pageNumbers li {
+    padding: 10px;
+    color:rgb( 255, 107, 107);
+    
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    margin: 0 2px;
+    /* margin-top: 30px;
+    margin-bottom: 30px; */
 }
 
-.button{
+.pageNumbers li.active{
+    background-color: rgb( 255, 107, 107);
+    color: white;
+    box-shadow: none;
+    /* transform: translateY(0); */
+}
+
+.pageNumbers li button{
     background-color: transparent;
     border: 2px solid rgb( 255, 107, 107);
     color: rgb( 255, 107, 107);
-    font-weight: 500;
+    font-size: 1.2rem;
+    cursor: pointer;
     border-radius: 3px;
     padding: 0 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
     transition: background 0.3s ease;
     margin: 0 2px;
-    margin-top: 30px;
-    margin-bottom: 30px;
     opacity: none;
 }
 
-.button:disabled{
-    pointer-events: none;
-}
-
-.button:hover{
-    color: white;
+.pageNumbers li button:hover{
     background-color: rgb( 255, 107, 107);
+    color: white;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
+    transform: translateY(-2px); 
 }
 
-.button:active{
-    box-shadow: none;
-    transform: translateY(0);
+.pageNumbers li button:focus{
+    outline: none;
 }

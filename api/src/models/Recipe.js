@@ -28,15 +28,9 @@ module.exports = (sequelize) => {
     instructions:{
       type: DataTypes.TEXT
     },
-    /* analyzedInstructions: {
-      type:DataTypes.STRING//REVISAR SI FUNCIONA
-    }, */
     image: {
       type: DataTypes.STRING
     },
-    /* dishTypes:{ //tipo de plato
-      type: DataTypes.STRING
-    }, */
     created: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

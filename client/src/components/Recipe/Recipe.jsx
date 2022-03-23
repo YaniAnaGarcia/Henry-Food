@@ -1,9 +1,7 @@
 import React, { useEffect, useState }  from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllDiets, createRecipe} from "../../actions";
-//import SearchBar from "../SearchBar/SearchBar";
-import { Link } from "react-router-dom";
-import logo from '../SearchBar/Img/Henry.png'
+import SearchBar from "../SearchBar/SearchBar";
 import style from './recipe.module.css'
 
 
@@ -13,17 +11,16 @@ export default function Recipe(){
     const dispatch= useDispatch();
     
     const allDiets = useSelector((state)=> state.diets);
-
+    
     const [errors, setErrors]= useState({})
 
-     //validaciones
+     /***************   validaciones  **********************/
 function validates(input){
     let errors = {};
 
     if(!input.title){
         errors.title = "Title is required"
     }
-
     if(!input.summary){
         errors.summary = "Summary is required"
     }
@@ -39,7 +36,6 @@ function validates(input){
     }else if(input.healthScore > 100 || input.healthScore < 1){
         errors.healthScore = "The Health-Score must be a number between 1 and 100"
     }
-
     if(!input.instructions){
         errors.instructions = " Instructions are required"
     }
@@ -47,11 +43,13 @@ function validates(input){
         errors.diets= "you must select one or  more types of diet"
     }
     return errors
-    
 }
+
+ /***************  fin validaciones  **********************/
 
 //console.log("errorvalidate", errors)
 
+    
     const [input, setInput] = useState({
         title: "",
         summary: "",
@@ -67,26 +65,30 @@ function validates(input){
     }, [dispatch])
 
     //
-    function handleChange(e){ //aca voy guardando los valores q tome a medida q se ejecute
+    function handleChange(e){ 
         setInput({ 
-            ...input, //guardar una copia de lo q ya hay en el estado
-            [e.target.name] : e.target.value //segun el name de cada prop q cree (name:"title")--> toma el value del input y lo guarda
+            ...input, 
+            [e.target.name] : e.target.value 
         });
         setErrors(validates({
             ...input,
             [e.target.name]: e.target.value
         }))
     }
-
+    
     function handleSelect(e){
-        setInput({
-            ...input,
-            diets:[...input.diets, e.target.value]
-        });
-        setErrors(validates({
-            ...input,
-            diets:[...input.diets, e.target.value]
-        }))
+        if(input.diets.includes(e.target.value)){
+            alert("la receta ya fue seleccionada")
+        }else{
+            setInput({
+                ...input,
+                diets:[...input.diets, e.target.value]
+            });
+            setErrors(validates({
+                ...input,
+                diets:[...input.diets, e.target.value]
+            }))
+        }
     }
 
     function handleSubmit(e){
@@ -115,45 +117,38 @@ function validates(input){
     return(
         <div>
             <div className={style.serch} > 
-               {/* <SearchBar/> */}
-                    <Link to={'/'} className={style.links} >
-                        <img className={style.image} src={logo} alt="logo" />
-                    </Link>
-                    
-                    <Link to={'/recipes'} className={style.links}>Recipes</Link>
+               <SearchBar/>
             </div>
             <div className={style.container}>
+
                 <form onSubmit={handleSubmit} className={style.form}>
+                    {/* titulo */}
                     <div className={style.grupo_Title}>
                         <div className={style.grupo}>
-                            <input className={style.input} type="text" name="title" placeholder="Title..." value={input.title} onChange={handleChange}/>
-
+                            <input className={style.input} type="text" name="title" required placeholder="Title..." value={input.title} onChange={handleChange}/>
                         </div >
                         {errors.title && (<span className={style.error}>{errors.title}</span>)}
                     </div>
-                    
-
+                    {/* image */}
                     <div className={style.grupo_image}>
                         <div className={style.grupo}>
                             <input className={style.input} type="text" name="image" placeholder="URL image..." value={input.image} onChange={handleChange}/>
                         </div>
                     </div>
-                    
+                    {/* s ore */}
                     <div className={style.grupo_score}>
                         <div className={style.grupo}>
                             <input 
                             className={style.input}
-                                type="number"
+                                type="number" 
                                 name="spoonacularScore"
                                 placeholder="Score..."
-                                /* max="100"
-                                min="1" */
                                 value={input.spoonacularScore} 
                                 onChange={handleChange} />
                         </div>
                         {errors.spoonacularScore && (<span className={style.error}>{errors.spoonacularScore}</span>)}
                     </div>
-                    
+                    {/* healthScore */}
                     <div  className={style.grupo_health}>
                         <div className={style.grupo}>
                         <input
@@ -168,21 +163,21 @@ function validates(input){
                         </div>
                         {errors.healthScore && (<span className={style.error}>{errors.healthScore}</span>)}
                     </div>
-
+                    {/* summary */}
                     <div className={style.grupo_summary}>
                         <div className={style.grupo}>
                             <textarea className={style.textarea} name="summary" cols="50" rows="3" value={input.summary} onChange={handleChange} placeholder="Summary..." />
                         </div>
                         {errors.summary && (<span className={style.error}>{errors.summary}</span>)}
                     </div>
-                    
+                    {/* instructions */}
                     <div className={style.grupo_instruction}>
                         <div className={style.grupo}>
                             <textarea name="instructions" cols="50" rows="5" value={input.instructions} onChange={handleChange} placeholder="Intructions..."/>
                         </div>
                         {errors.instructions && (<span className={style.error}>{errors.instructions}</span>)}
                     </div>
-
+                    {/* diets */}
                     <div >
                         <select className={style.select} onChange={handleSelect} >
                             <option >types of diets...</option>
@@ -193,15 +188,13 @@ function validates(input){
                             }
                         </select>
                         {errors.diets && (<span className={style.error}>{errors.diets}</span>)}
-
-                        
-                     
                     </div>
+                    {/*boton  */}
                     <div className={style.containerButton}>
                     {
                             Object.keys(errors).length !== 0 ? 
                             <p className={style.button}  onClick={(e)=> alert("Please complete all form")} >Create Recipe</p> :
-                            <button className={style.button} type="submit" /* onSubmit={handleSubmit} */ >Create Recipe</button>
+                            <button className={style.button} type="submit" >Create Recipe</button>
                         }
                     </div>
 
@@ -218,8 +211,6 @@ function validates(input){
                             }
                         </ul> 
                     </div>
-
-                     
                 </form>
             </div>
         </div>

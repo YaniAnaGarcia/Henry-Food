@@ -4,36 +4,43 @@ import { getAllRecipes, orderByTitle, orderByScore} from "../../actions";
 import Card from "../Card/Card";
 import SearchBar from "../SearchBar/SearchBar";
 import NavBar from "../NavBar/NavBar";
-import Paginado from "../Paginado/Paginado";
+import Pagination from "../Paginado/Paginado";
+import Footer from "../Footer/Footer";
 import style from "./home.module.css"
 import { Link } from "react-router-dom";
 
 
 export default function Home (){
-    const dispatch = useDispatch();//genero la constante dipatch paara poder usar el useDispatch y despachar las acciones
-
-    const totalRecipes = useSelector((state)=>state.recipes) //cumple la misma funcion q mapStateToProps--> solo retorna la parte del estado q me interesa. en este caso todo lo q este en el estado de recipes
+    const dispatch = useDispatch();
+    
+    const totalRecipes = useSelector((state)=>state.recipes) //cumple la misma funcion q mapStateToProps
     //console.log("SOYTOATLRECIPES", totalRecipes)
     
-    //creo un estado locla para el ordenamiento
+    //creo un estado local para el ordenamiento
     const [orderTitle, setOrderTitle] = useState('')
     const [orderScore, setOrderScore] = useState('')
+   
     
     //PAGINADO
-    const [currentPage, setCurrentPage] = useState(1); //creo un estado local para las paginas. su valor inicial se setea en 1 q seria la pagina a partir de la cual se arranca
+    const [currentPage, setCurrentPage] = useState(1); 
+    //const [recipesPerPage] = useState(9)
+    const recipesPerPage= 9
+    
+    
+    
+    const indexOfLastItem = currentPage * recipesPerPage;//9-18
+    const indexOfFirstItem = indexOfLastItem - recipesPerPage;//0-9 
 
-    //creo un estado local para la cantidad de recetas x pagina- le paso la cantidad por parametro
-    const [recipesPerPage] = useState(9)
+    const currentRecipes = totalRecipes.slice(indexOfFirstItem, indexOfLastItem);
 
-    const lastRecipePag = currentPage * recipesPerPage;//guardo el numero del ultimo pais por pagina
-    const firstRecipePag = lastRecipePag - recipesPerPage; // guardo la posicion de la er receta de la pagina
-
-    const currentRecipes = totalRecipes.slice(firstRecipePag, lastRecipePag);//guardo las reectas de la pagina q se encuentras entre las posiciones indicadas
-
-    const paginado = (pageNumber)=>{
+    /* const paginado = (pageNumber)=>{
         setCurrentPage(pageNumber)
     }
+ */
 
+    function handleClick(e){
+        setCurrentPage(Number(e.target.id));
+    }
     //monto el componente
     useEffect(()=>{
        dispatch(getAllRecipes())
@@ -45,56 +52,63 @@ export default function Home (){
         dispatch(getAllRecipes());
     }
     
-    //orden alfabetico
     function handleOrderByTitle(e){
         e.preventDefault();
         dispatch(orderByTitle(e.target.value));
+        setCurrentPage(1)
         setOrderTitle(`ordenado ${e.target.value}`)
     }
     
-    //order x puntaje
     function handleOrderByScore(e){
         e.preventDefault();
         dispatch(orderByScore(e.target.value));
+        setCurrentPage(1)
         setOrderScore(`ordenado ${e.target.value}`)
     }
+    
     
     return(
         <div className={style.container}>
             <div>
-                <SearchBar
-                handleRefresh={handleRefresh}
-                />
+                <SearchBar/>
             </div>
             <div>
                 <NavBar
                 handleOrderByTitle={handleOrderByTitle}
                 handleOrderByScore={handleOrderByScore}
+                handleRefresh={handleRefresh}
                 />
             </div>
 
             <div className={style.containerCard}>
                 {
                     currentRecipes && currentRecipes.map((rec)=>(
-                        <Link key={rec.id} to={`/recipes/${rec.id}`} > 
+                        <Link className={style.cardLink} key={rec.id} to={`/recipes/${rec.id}`} > 
                             <Card 
                                 key={rec.id} 
                                 id={rec.id} 
                                 title={rec.title} 
                                 image={rec.image} 
-                                diets={rec.diets.map(el => el.name ? el.name : el)} 
+                                diets={rec.diets.map(el => el.name? el.name :el )} 
                                 score={rec.score} 
+                                helthyScore={rec.helthyScore}
                             />
                         </Link>      
                     ))
                 }
             </div>
             <div className={style.paginado}>
-                <Paginado
+                <Pagination
                     recipesPerPage={recipesPerPage}
                     totalRecipes={totalRecipes.length}
-                    paginado={paginado}
+                    handleClick={handleClick}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                   /*  paginado={paginado} */
                 />
+            </div>
+            <div>
+                <Footer/>
             </div>
             
         </div>

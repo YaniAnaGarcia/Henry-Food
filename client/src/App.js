@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-
 import Home from './components/Home/Home';
 import LandingPage from './components/LandingPage/LandingPage';
 import Detail from './components/Detail/Detail.jsx';
 import Recipe from './components/Recipe/Recipe';
+
 
 function App() {
   return (

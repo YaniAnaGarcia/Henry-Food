@@ -6,13 +6,14 @@ import  logo from '../SearchBar/Img/Diseño sin título.png'
 
 export default function Card ({title, image, diets, score}){
 
-    //console.log("soy CARD", id, title, image)
+    
 
     return(
         <div className={style.container}>
             <div className={style.item}>
                 <img src={image? image : logo} alt={title} className={style.img} />   
                 <p className={style.point}>Score: <span>{score}</span></p>
+
             <div className={style.infoContainer}>
                 <div>
                     <h3 className={style.title}>{title}</h3> 
