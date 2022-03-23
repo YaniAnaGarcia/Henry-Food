@@ -10,10 +10,10 @@
 
 ## Objetivos del Proyecto.
 
-Crear una Aplicación web donde se puedan encontrar diferentes tipos de recetas de cocina, utilizando una API externa (https://spoonacular.com/food-api). A partir de ella poder, entre otras cosas:
+Crear una Aplicación web donde se puedan encontrar diferentes tipos de recetas de cocina 🥗, utilizando una API externa (https://spoonacular.com/food-api). y a partir de ella poder, entre otras cosas:
 
   - Buscar recetas
-  - Filtrarlos / Ordenarlos
+  - Filtrarlas por tipos de Dietas / Ordenarlas por puntaje y por orden alfabetico, tanto ascendente ⏫como descendentemente ⏬.
   - Crear nuevas recetas propias
 
   # Requisitos para ejecutarla localmente ⚙
