@@ -4,7 +4,7 @@
 
 # Individual Project - Henry Food
 
-<p align="right">
+<p align="center">
   <img height="200" src="./client/src/components/LandingPage/img/your recipes app.png" />
 </p>
 
