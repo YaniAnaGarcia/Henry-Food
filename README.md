@@ -10,22 +10,23 @@
 
 ## Objetivos del Proyecto.
 
-Crear una Aplicación web donde se puedan encontrar diferentes tipos de recetas de cocina 🥗, utilizando una API externa (https://spoonacular.com/food-api). y a partir de ella poder, entre otras cosas:
+Crear una Aplicación web donde se puedan encontrar diferentes tipos de recetas de cocina 🥗, utilizando una API externa (https://spoonacular.com/food-api). Y a partir de ella, poder entre otras cosas:
 
-  - Buscar recetas
-  - Filtrarlas por tipos de Dietas / Ordenarlas por puntaje y por orden alfabetico, tanto ascendente ⏫como descendentemente ⏬.
-  - Crear nuevas recetas propias
+  ✅ Buscar recetas
+  ✅ Filtrarlas por tipos de Dietas / Ordenarlas por puntaje y por orden alfabetico, tanto ascendente ⏫como descendentemente ⏬.
+  ✅ Crear nuevas recetas propias
 
   # Requisitos para ejecutarla localmente ⚙
   1. Instalar PostgreSQL
-  2. Crear una base de datos con el nombre "alimentos"
-  3. Dentro de ./api cree un archivo .env con sus credenciales, como se muestra a continuacion.
+  2. Crear una base de datos con el nombre "recipes"
+  3. Dentro de ./api cree un archivo .env con sus credenciales, como se muestra a continuacion...
 
 
 ```
 DB_USER=usuariodepostgres
 DB_PASSWORD=passwordDePostgres
 DB_HOST=localhost
+API_KEY=yourApiKey
 ```
 
 Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres. 
@@ -49,3 +50,5 @@ npm start
 ```
 npm start
 ```
+
+# Espero lo disfruten... 😊😉
