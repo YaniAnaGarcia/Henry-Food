@@ -15,8 +15,18 @@ Crear una Aplicación web donde se puedan encontrar diferentes tipos de recetas 
   ✅ Buscar recetas
 
   ✅ Filtrarlas por tipos de Dietas / Ordenarlas por puntaje y por orden alfabetico, tanto ascendente ⏫como descendentemente ⏬.
-  
+
   ✅ Crear nuevas recetas propias
+
+  ## Tecnologias utilizadas 💻
+
+  🟣 React.js 
+  🟢 Redux
+  🟠 CSS Module
+  🟣 Express
+  🟢 Sequelize
+  🟠Postrgres
+  🟣Node.Js
 
   # Requisitos para ejecutarla localmente ⚙
   1. Instalar PostgreSQL
