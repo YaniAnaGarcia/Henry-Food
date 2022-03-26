@@ -79,7 +79,7 @@ router.get('/recipes', async (req, res)=>{
                         title: rec. title,
                         diets: rec.diets.map((d)=>d),
                         score: rec.spoonacularScore ,
-                        healthScore: rec.healthScore
+                        healthScore: rec.healthScore 
                     }
                 })
                 return res.status(200).send(result)

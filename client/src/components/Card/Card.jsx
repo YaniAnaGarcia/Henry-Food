@@ -6,7 +6,7 @@ import  logo from '../SearchBar/Img/Diseño sin título.png'
 
 export default function Card ({title, image, diets, score}){
 
-    
+    console.log("aca", title, diets)
 
     return(
         <div className={style.container}>
