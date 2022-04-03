@@ -14,7 +14,7 @@ Crear una Aplicación web donde se puedan encontrar diferentes tipos de recetas 
 
   ✅ Buscar recetas
 
-  ✅ Filtrarlas por tipos de Dietas / Ordenarlas por puntaje y por orden alfabetico, tanto ascendente ⏫como descendentemente ⏬.
+  ✅ Filtrarlas por tipos de Dietas / Ordenarlas por puntaje y por orden alfabetico, de manera ascendente ⏫ y descendente ⏬.
 
   ✅ Crear nuevas recetas propias
 
