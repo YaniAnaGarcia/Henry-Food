@@ -1,10 +1,8 @@
-
 .pageNumbers{
     list-style: none;
     display: flex;
     margin-bottom: 20px;
 }
-
 .pageNumbers li {
     padding: 10px;
     color:rgb( 255, 107, 107);
@@ -15,14 +13,11 @@
     /* margin-top: 30px;
     margin-bottom: 30px; */
 }
-
 .pageNumbers li.active{
     background-color: rgb( 255, 107, 107);
     color: white;
     box-shadow: none;
-    /* transform: translateY(0); */
 }
-
 .pageNumbers li button{
     background-color: transparent;
     border: 2px solid rgb( 255, 107, 107);
@@ -35,14 +30,12 @@
     margin: 0 2px;
     opacity: none;
 }
-
 .pageNumbers li button:hover{
     background-color: rgb( 255, 107, 107);
     color: white;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px); 
 }
-
 .pageNumbers li button:focus{
     outline: none;
 }

@@ -1,0 +1,12 @@
+.loading {
+    z-index: 500;
+    width: 17rem;
+    height: 17rem;
+    display: flex;
+    margin-left: 400px;
+    align-content: center;
+    justify-content: center;
+}
+.setloading {
+    display: none;
+}

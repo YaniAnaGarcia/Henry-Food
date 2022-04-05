@@ -4,6 +4,7 @@ import style from './searchBar.module.css';
 import { Link } from "react-router-dom";
 import { searchByTitle } from "../../actions";
 import logo from './Img/Henry.png'
+import { BiSearchAlt} from 'react-icons/bi';
 
 export default function SearchBar(){
     const dispatch = useDispatch();
@@ -14,16 +15,13 @@ export default function SearchBar(){
     function handleInput(e){
         e.preventDefault();
         setTitle(e.target.value);//guardo en mi estado local el valor input
-        
     }
     
     function handleSubmit(e){
         e.preventDefault();
         dispatch(searchByTitle(title));//disp. accion con el inp
         setTitle('')
-        
     }
-  
 
     return(
         <div className={style.container}>
@@ -34,11 +32,11 @@ export default function SearchBar(){
                     
                     <Link to={'/recipes'} className={style.links} >Recipes</Link>
 
-                    <Link to={'/create'} className={style.links}>Create your Recipe.</Link>
+                    <Link to={'/create'} className={style.links}>Create your Recipe. </Link>
                 
                 <div className={style.contenedor_link}>
                     <form onSubmit={(e)=> handleSubmit(e)}>
-                        <div>
+                        <div className={style.container_input}>
                             <input 
                                 className={style.input}
                                 type="text"
@@ -47,7 +45,7 @@ export default function SearchBar(){
                                 placeholder= "Search Recipe" 
                                 onChange={(e)=> handleInput(e)}
                                 />
-                            
+                                <BiSearchAlt className={style.icon}/>
                                 <button className={style.button} type="submit" >Search</button> 
                            
                             

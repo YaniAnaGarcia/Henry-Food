@@ -14,7 +14,7 @@ export default function Paginado({recipesPerPage, totalRecipes, handleClick, cur
         pages.push(i)
     }
 
-    const renderPageNumbers = pages.map((number)=>{
+    const renderPageNumbers= pages.map((number)=>{
         
         if(number < maxPageNumberLimit+1 && number > minPageNumberLimit){
             return(
@@ -29,7 +29,7 @@ export default function Paginado({recipesPerPage, totalRecipes, handleClick, cur
         }else{
             return null;
         }
-    })
+    }) 
    
     //HANDLE PARA EL BTN NEXT
     const handleNextbtn=()=>{
@@ -63,6 +63,7 @@ export default function Paginado({recipesPerPage, totalRecipes, handleClick, cur
 
   return (
     <>
+    
         <ul className={style.pageNumbers}>
             <li>
                 <button

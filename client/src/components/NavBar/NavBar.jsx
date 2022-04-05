@@ -1,6 +1,7 @@
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllDiets, filterByDiet} from "../../actions";
+import { BiRefresh } from 'react-icons/bi';
 import style from './navBar.module.css'
 
 
@@ -23,10 +24,14 @@ export default function NavBar({handleOrderByTitle, handleOrderByScore, handleRe
     return(
         /* aca voy a hacer los filtrados */
         <div className={style.container} >
-            <div>
-                <button className={style.select} onClick={(e)=>handleRefresh(e)}>
-                    Back to All Recipes
-                </button>
+            <div className={style.container_refresh}>
+                <p className={style.title}>Refresh</p>
+                <div>
+                    <button className={style.refresh} onClick={(e)=>handleRefresh(e)}>
+                        <BiRefresh />
+                    </button>
+                </div>
+                
             </div>
             <div> {/* filtrado por tipos de dietas */}
                 <p className={style.title}>Select type of Diet</p>
@@ -59,10 +64,6 @@ export default function NavBar({handleOrderByTitle, handleOrderByScore, handleRe
                         </select>
                     </div>
             </div>
-           <div>
-               Favourites
-           </div>
-           
         </div>
     )
 }

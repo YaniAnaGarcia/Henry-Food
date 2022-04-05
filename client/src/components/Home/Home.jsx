@@ -6,13 +6,15 @@ import SearchBar from "../SearchBar/SearchBar";
 import NavBar from "../NavBar/NavBar";
 import Pagination from "../Paginado/Paginado";
 import Footer from "../Footer/Footer";
+import Loading from "../Loading/Loading";
 import style from "./home.module.css"
 import { Link } from "react-router-dom";
 
 
 export default function Home (){
     const dispatch = useDispatch();
-    
+    const [loading, setLoading] = useState(true);
+
     const totalRecipes = useSelector((state)=>state.recipes) //cumple la misma funcion q mapStateToProps
     //console.log("SOYTOATLRECIPES", totalRecipes)
     
@@ -79,7 +81,10 @@ export default function Home (){
                 handleRefresh={handleRefresh}
                 />
             </div>
-
+            
+            {loading === true ? (
+                <Loading setLoading={setLoading}/>
+            ): 
             <div className={style.containerCard}>
                 {
                     currentRecipes && currentRecipes.map((rec)=>(
@@ -96,7 +101,9 @@ export default function Home (){
                         </Link>      
                     ))
                 }
-            </div>
+            </div> 
+            }
+            
             <div className={style.paginado}>
                 <Pagination
                     recipesPerPage={recipesPerPage}

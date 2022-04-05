@@ -1,9 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetail, deletDetail} from "../../actions";
 import SearchBar from "../SearchBar/SearchBar";
-import foto from './img/photo-1540660290370-8aa90e451e8a.avif'
+import Loading from "../Loading/Loading";
+import foto from './img/photo-1540660290370-8aa90e451e8a.avif';
+import { AiFillStar } from 'react-icons/ai';
+import { FaHeartbeat } from 'react-icons/fa';
+import { GiNotebook } from 'react-icons/gi';
+import { BsBarChartSteps } from 'react-icons/bs';
+
 import style from './detail.module.css'
 
 export default function Detail(props){ //detail 
@@ -13,6 +19,8 @@ export default function Detail(props){ //detail
     const {id}= useParams()
     //console.log("ID", id)
     const recipes = useSelector((state)=> state.detail)
+
+    const [loading, setLoading]= useState(true)
     
 
     useEffect(()=>{
@@ -41,22 +49,20 @@ export default function Detail(props){ //detail
                             <h2 className={style.title}>{recipes.title}</h2>
                             <div className={recipes.data}>
                                 <div className={style.scores}>
-                                    <h4>Score: <span>{recipes.spoonacularScore}</span></h4>
-                                    <h4>Healthy-Score: <span>{recipes.healthScore}</span></h4>
+                                    <h4>Score: <AiFillStar className={style.star}/> <span>{recipes.spoonacularScore}</span></h4>
+                                    <h4>Healthy-Score: <FaHeartbeat className={style.healthStar}/> <span>{recipes.healthScore}</span></h4>
                                 </div>
-                                <h4>Diets: <span>{recipes.diets?.join(', ')}</span> </h4>
+                                <h4> Diets: <span>{recipes.diets?.join(', ')}</span> </h4>
                                
-                                <h4>Summary:<span>{recipes.summary && recipes.summary.replace(/<[^>]+>/g, '')}</span></h4>
+                                <h4> <GiNotebook className={style.iconSummary}/> Summary :  <br /> <span>{recipes.summary && recipes.summary.replace(/<[^>]+>/g, '')}</span></h4>
                             </div>
                         </div> 
                         <div className={style.steps}>
-                            <h3>Instructions</h3>
+                            <h3> <BsBarChartSteps className={style.iconSteps}/> Instructions :</h3>
                             <p>{recipes.instructions ? recipes.instructions.replace(/<[^>]+>/g, ''): "This recipe does not have any intructions"}</p>
                         </div>   
                     </div> 
-                </div>) : <p>LOADING</p>
-                
-                
+                </div>) : <Loading setLoading={setLoading}/>
             }
         </div>
         

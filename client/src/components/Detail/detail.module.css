@@ -4,6 +4,9 @@
     display: grid;
     grid-template-columns:1fr 2fr ;
     grid-gap: 20px;
+    padding: 0.5rem 1rem;
+    height: 80vh;
+
 }
 
 .head img{
@@ -24,8 +27,19 @@
     justify-content: space-around;
     border-top: 1px solid rgb( 255, 107, 107);
     border-bottom: 1px solid rgb( 255, 107, 107);
+    font-size: 1em;
+}
+.star{
+    color: rgb(233, 233, 58);
 }
 
+.healthStar{
+    color: rgb(226, 43, 43);
+}
 .summary{
     font-weight: lighter;
+}
+.iconSummary,
+.iconSteps{
+    color: rgb(3, 6, 190);
 }

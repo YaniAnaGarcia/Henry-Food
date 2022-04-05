@@ -116,62 +116,54 @@ router.get('/types', async (req, res)=>{
         "primal", 
         "fodmap friendly", 
         "whole 30"]
-
-    diets.forEach(el => {
-        Diet.findOrCreate({
-            where: {name:el}
+    try {
+        diets.forEach(el => {
+            Diet.findOrCreate({
+                where: {name:el}
+            })
         })
-    })
+        
+        const allTypes= await Diet.findAll() 
+        res.send(allTypes)
+    } catch (error) {
+        console.log("diets", error)
+    }
+
     
-    const allTypes= await Diet.findAll() 
-    res.send(allTypes)
 }) 
-
-
-/* router.get('/types', async (req, res)=>{
-    const info = await getApiInfo(); //toda la data de la 
-    const dietsApi = info.map((e)=> e.diets)
-    //console.log(dietsApi)
-     const respuesta = dietsApi.flat().map((diet)=>{
-        Diet.findOrCreate({
-            where: {name: diet}
-        })
-    }) 
-    //console.log(respuesta)
-    //PARA DEVOLVER TODAS LAS DIETAS Q TENEMOS EN LA BD
-    const allDiet = await Diet.findAll();
-    //console.log(allDiet)
-    res.send(allDiet)
-})  */
-
 //POST crear una ueva receta
 router.post('/recipe', async (req, res)=>{
     const {title, summary, spoonacularScore, healthScore, instructions, diets, created} = req.body
     //console.log("BODY", title, summary, spoonacularScore, healthScore, instructions, diets)
-    const recipeCreated = await Recipe.create({
-        title,
-        summary,
-        spoonacularScore,
-        healthScore,
-        instructions,
-        diets,
-        created
-    })
+    try {
+        const recipeCreated = await Recipe.create({
+            title,
+            summary,
+            spoonacularScore,
+            healthScore,
+            instructions,
+            diets,
+            created
+        })
+        
+        const dbDiets = await Diet.findAll({
+            where: {
+                name : diets
+            }
+        })
+        recipeCreated.addDiet(dbDiets)
+       // console.log("ACAA",recipeCreated)
+        res.status(200).send('your recipe was successfully created')
+    } catch (error) {
+        console.log("createRecipe", error)
+    }
     
-    const dbDiets = await Diet.findAll({
-        where: {
-            name : diets
-        }
-    })
-    recipeCreated.addDiet(dbDiets)
-   // console.log("ACAA",recipeCreated)
-    res.status(200).send('your recipe was successfully created')
 }) 
 
 
 router.get('/recipes/:id', async (req, res)=>{
     const {id} = req.params;
-    
+    try {
         if(id.length < 10){
             const apiId = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&includeNutrition=true`)
             const result = {
@@ -201,9 +193,12 @@ router.get('/recipes/:id', async (req, res)=>{
             recipeDbFound ? res.status(200).send(recipeDbFound):
             res.status(404).send('the ID doesnt exists')
         }
+    } catch (error) {
+        console.log("IdRecipes", error)
+    }
 }) 
 
-router.delete('/recipes/:id', async (req, res)=>{
+/* router.delete('/recipes/:id', async (req, res)=>{
     const {id} = req.params;
     try {
         const recipeDeleted = await Recipe.destroy({
@@ -214,8 +209,6 @@ router.delete('/recipes/:id', async (req, res)=>{
     } catch (error) {
         return res.send(error)
     }
-})
-
-
+}) */
 
 module.exports = router;
