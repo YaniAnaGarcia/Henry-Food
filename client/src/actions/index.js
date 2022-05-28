@@ -16,7 +16,7 @@ export const DELETE_RECIPE_CREATED = "DELETE_RECIPE_CREATED";
 export function getAllRecipes (){
     return async function (dispatch){
         try {
-            const allRecipes = await axios.get('http://localhost:3001/recipes')
+            const allRecipes = await axios.get('/recipes')
             return dispatch({
                 type: GET_ALL_RECIPES,
                 payload: allRecipes.data
@@ -30,7 +30,7 @@ export function getAllRecipes (){
 export function searchByTitle (title){
     return async function (dispatch){
         try {
-            const searchTitle = await axios.get(`http://localhost:3001/recipes?title=${title}`)
+            const searchTitle = await axios.get(`/recipes?title=${title}`)
             return dispatch({
                 type:SEARCH_BY_TITLE,
                 payload:searchTitle.data
@@ -44,7 +44,7 @@ export function searchByTitle (title){
 export function getAllDiets (){
     return async function (dispatch){
         try {
-            const diets = await axios.get('http://localhost:3001/types')
+            const diets = await axios.get('/types')
             return dispatch({
                 type: GET_ALL_DIETS,
                 payload: diets.data
@@ -91,7 +91,7 @@ export function orderByScore (payload){
 export function getDetail(id){
     return async function (dispatch){
         try {
-            const detail = await axios.get(`http://localhost:3001/recipes/${id}`)
+            const detail = await axios.get(`/recipes/${id}`)
             return dispatch({
                 type: GET_RECIPE_DETAIL,
                 payload: detail.data
@@ -104,7 +104,7 @@ export function getDetail(id){
 
 export function createRecipe(payload){
     return async function (){
-        const newRecipe = await axios.post('http://localhost:3001/recipe', payload);
+        const newRecipe = await axios.post('/recipe', payload);
         return newRecipe
     }
 }

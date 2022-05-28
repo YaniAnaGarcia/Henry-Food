@@ -175,7 +175,7 @@ router.get('/recipes/:id', async (req, res)=>{
                 healthScore: apiId.data.healthScore,
                 instructions: apiId.data.instructions
             }
-            console.log("AAA",result)
+           // console.log("AAA",result)
             return res.status(200).send(result)
         } else{
             const recipeDb = await Recipe.findByPk(id, {include: Diet});
@@ -189,7 +189,7 @@ router.get('/recipes/:id', async (req, res)=>{
                 instructions: recipeDb.instructions, 
                 created: recipeDb.created
             }
-            console.log("DB", recipeDbFound)
+            //console.log("DB", recipeDbFound)
             recipeDbFound ? res.status(200).send(recipeDbFound):
             res.status(404).send('the ID doesnt exists')
         }

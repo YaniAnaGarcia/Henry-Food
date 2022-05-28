@@ -4,7 +4,6 @@ import style from './searchBar.module.css';
 import { Link } from "react-router-dom";
 import { searchByTitle } from "../../actions";
 import logo from './Img/Henry.png'
-import { BiSearchAlt} from 'react-icons/bi';
 
 export default function SearchBar(){
     const dispatch = useDispatch();
@@ -29,7 +28,6 @@ export default function SearchBar(){
                     <Link to={'/'} className={style.links} >
                         <img className={style.image} src={logo} alt="logo" />
                     </Link>
-                    
                     <Link to={'/recipes'} className={style.links} >Recipes</Link>
 
                     <Link to={'/create'} className={style.links}>Create your Recipe. </Link>
@@ -45,7 +43,6 @@ export default function SearchBar(){
                                 placeholder= "Search Recipe" 
                                 onChange={(e)=> handleInput(e)}
                                 />
-                                <BiSearchAlt className={style.icon}/>
                                 <button className={style.button} type="submit" >Search</button> 
                            
                             

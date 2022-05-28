@@ -16,7 +16,7 @@ export default function Home (){
     const [loading, setLoading] = useState(true);
 
     const totalRecipes = useSelector((state)=>state.recipes) //cumple la misma funcion q mapStateToProps
-    //console.log("SOYTOATLRECIPES", totalRecipes)
+    //console.log("SOYTOTALRECIPES", totalRecipes)
     
     //creo un estado local para el ordenamiento
     const [orderTitle, setOrderTitle] = useState('')
@@ -95,8 +95,8 @@ export default function Home (){
                                 title={rec.title} 
                                 image={rec.image} 
                                 diets={rec.diets.map(el => el.name? el.name :el )} 
-                                score={rec.score} 
-                                helthyScore={rec.helthyScore}
+                                score={rec.healthScore} 
+                                /* helthyScore={rec.helthyScore} */
                             />
                         </Link>      
                     ))

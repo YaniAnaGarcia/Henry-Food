@@ -52,7 +52,7 @@ export default function Detail(props){ //detail
                                     <h4>Score: <AiFillStar className={style.star}/> <span>{recipes.spoonacularScore}</span></h4>
                                     <h4>Healthy-Score: <FaHeartbeat className={style.healthStar}/> <span>{recipes.healthScore}</span></h4>
                                 </div>
-                                <h4> Diets: <span>{recipes.diets?.join(', ')}</span> </h4>
+                                <h4> Diets: <span>{recipes.diets? recipes.diets.join(', ') : "there is no associated diet"}</span> </h4>
                                
                                 <h4> <GiNotebook className={style.iconSummary}/> Summary :  <br /> <span>{recipes.summary && recipes.summary.replace(/<[^>]+>/g, '')}</span></h4>
                             </div>

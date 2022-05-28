@@ -6,7 +6,7 @@ import { AiFillStar } from 'react-icons/ai';
 
 export default function Card ({title, image, diets, score}){
 
-    console.log("aca", title, diets)
+    //console.log("aca", title, diets, score)
 
     return(
         <div className={style.container}>
@@ -22,9 +22,9 @@ export default function Card ({title, image, diets, score}){
                     <h4 className={style.listTitle}>Type of diet:
                         <ul>
                             {
-                                 diets.map((e)=>(
+                                 diets? diets.map((e)=>(
                                     <li key={e}>{e}</li>
-                                )) 
+                                )) : <li>there is no associated diet</li>
                             }
                         </ul>
                     </h4>
